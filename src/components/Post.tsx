@@ -21,7 +21,7 @@ export default function Post({
         liked={liked1}
         onClick={() => setLiked1(!liked1)}
       /> */}
-      <LikeButton liked={liked} onClick={() => { }} />
+      <LikeButton />
     </div>
   );
 }
