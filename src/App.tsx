@@ -1,6 +1,6 @@
 import Post from './components/Post';
 import { useState } from 'react';
-import './styles.scss';
+import StoriesList from './components/StoriesList';
 
 export interface PostModel {
   id: string;
@@ -37,6 +37,8 @@ function App() {
 
   return (
     <div className='app-container'>
+      <StoriesList />
+
       {posts.map((post, index) => {
         return (
           <Post

@@ -1,0 +1,18 @@
+.story-button-container {
+  background-color: blue;
+
+  &.has-seen {
+    background-color: red;
+
+    .name {
+      color: #8e8e8e;
+    }
+  }
+
+  .user-icon-container {
+  }
+
+  .name {
+    color: #262626;
+  }
+}
