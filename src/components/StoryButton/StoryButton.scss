@@ -1,5 +1,16 @@
 .story-button-container {
   background-color: blue;
+  margin: 20px;
+
+  &.lg {
+    width: 40px;
+  }
+  &.md {
+    width: 30px;
+  }
+  &.sm {
+    width: 20px;
+  }
 
   &.has-seen {
     background-color: red;
