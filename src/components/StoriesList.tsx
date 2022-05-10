@@ -1,30 +1,33 @@
-import { useState } from "react";
-import StoryButton from "./StoryButton/StoryButton";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Post, { PostModel } from "./Post";
 
 export default function StoriesList() {
-  const [hasSeen, setHasSeen] = useState(false);
+  const [posts, setPosts] = useState<PostModel[]>([]);
+
+  useEffect(() => {
+    axios.get('https://fakerapi.it/api/v1/images')
+      .then((response) => {
+        setPosts(response.data.data)
+      })
+      .catch((error) => {
+        // vc tem acesso ao error
+        console.log(error)
+      });
+  }, []);
 
   return (
     <div>
-      <button onClick={() => setHasSeen(!hasSeen)}>
-        Toggle
-      </button>
-
-      <StoryButton
-        image="https://www.frontacademy.com.br/images/depoimentos/daniel.png"
-        name="dani"
-        hasSeen={hasSeen}
-      />
-
-      <StoryButton
-        image="https://www.frontacademy.com.br/images/depoimentos/daniel.png"
-        name="flavio"
-      />
-
-      <StoryButton
-        image="https://www.frontacademy.com.br/images/depoimentos/daniel.png"
-        name="daniel"
-      />
+      {posts.map((post, index) => {
+        return (
+          <Post
+            key={`${post.url} ${index}`}
+            description={post.description}
+            title={post.title}
+            url={post.url}
+          />
+        )
+      })}
     </div>
   );
 }
