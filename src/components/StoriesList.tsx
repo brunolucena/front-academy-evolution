@@ -1,23 +1,27 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import Menu from "./Menu";
 import Post, { PostModel } from "./Post";
+import { useEffect, useState } from "react";
 
 export default function StoriesList() {
   const [posts, setPosts] = useState<PostModel[]>([]);
 
   useEffect(() => {
-    axios.get('https://fakerapi.it/api/v1/images')
+    axios
+      .get("https://fakerapi.it/api/v1/images")
       .then((response) => {
-        setPosts(response.data.data)
+        setPosts(response.data.data);
       })
       .catch((error) => {
         // vc tem acesso ao error
-        console.log(error)
+        console.log(error);
       });
   }, []);
 
   return (
     <div>
+      <Menu />
+
       {posts.map((post, index) => {
         return (
           <Post
@@ -26,7 +30,7 @@ export default function StoriesList() {
             title={post.title}
             url={post.url}
           />
-        )
+        );
       })}
     </div>
   );
